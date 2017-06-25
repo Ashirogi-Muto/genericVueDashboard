@@ -4,6 +4,7 @@ import charts from './charts'
 import uifeatures from './uifeatures'
 import components from './components'
 import tables from './tables'
+import products from './products'
 
 // show: meta.label -> name
 // name: component name
@@ -33,7 +34,8 @@ const state = {
     charts,
     uifeatures,
     components,
-    tables
+    tables,
+    products
   ]
 }
 
