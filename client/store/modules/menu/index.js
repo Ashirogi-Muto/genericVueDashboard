@@ -5,7 +5,7 @@ import uifeatures from './uifeatures'
 import components from './components'
 import tables from './tables'
 import products from './products'
-
+import custom from './custom';
 // show: meta.label -> name
 // name: component name
 // meta.label: display label
@@ -35,7 +35,8 @@ const state = {
     uifeatures,
     components,
     tables,
-    products
+    products,
+    custom
   ]
 }
 

@@ -16,6 +16,15 @@ export default {
         link: 'products/index.vue'
       },
       component: lazyLoading('products/index')
+    },
+    {
+      name: 'View Products',
+      path: '/products/viewProducts',
+      meta: {
+        label: 'View Products',
+        link: 'products/viewProducts.vue'
+      },
+      component: lazyLoading('products/viewProducts')
     }
   ]
 }
