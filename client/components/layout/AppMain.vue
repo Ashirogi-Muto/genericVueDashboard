@@ -37,6 +37,9 @@ export default {
 @import '~bulma/sass/utilities/variables';
 @import '~bulma/sass/utilities/mixins';
 
+ .is-marginless{
+    margin-left: 110px !important;
+ }
 .app-main {
   padding-top: 50px;
   margin-left: 180px;

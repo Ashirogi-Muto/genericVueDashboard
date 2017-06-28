@@ -1,4 +1,5 @@
 <template>
+  <div class="menu-container">
   <aside class="menu app-sidebar animated" :class="{ slideInLeft: show, slideOutLeft: !show }">
     <p class="menu-label">
       General
@@ -32,6 +33,7 @@
       </li>
     </ul>
   </aside>
+  </div>
 </template>
 
 <script>
@@ -142,12 +144,12 @@ export default {
   left: 0;
   bottom: 0;
   padding: 20px 0 50px;
-  width: 180px;
+  width: 280px;
   min-width: 45px;
   max-height: 100vh;
   height: calc(100% - 50px);
   z-index: 1024 - 1;
-  background: #FFF;
+  background: #66615b;
   box-shadow: 0 2px 3px rgba(17, 17, 17, 0.1), 0 0 0 1px rgba(17, 17, 17, 0.1);
   overflow-y: auto;
   overflow-x: hidden;
@@ -166,11 +168,14 @@ export default {
   }
 
   .menu-label {
+    color: #FFF;
     padding-left: 5px;
   }
 
   .menu-list {
     li a {
+      color: #FFF;
+      padding: 5px;
       &[aria-expanded="true"] {
         .is-angle {
           transform: rotate(180deg);
@@ -183,5 +188,18 @@ export default {
     }
   }
 
+  .menu-list li {
+    padding: 15px;
+  }
+
+  .menu-list li a:hover{
+    color:#000;
+  }
+
 }
+
+.menu-container{
+    overflow: hidden;
+    padding-right: 20px;
+  }
 </style>
