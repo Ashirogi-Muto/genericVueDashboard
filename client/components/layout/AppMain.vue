@@ -54,4 +54,10 @@ export default {
 .app-content {
   padding: 20px;
 }
+
+@media only screen and (max-width: 720px) {
+   .is-marginless{
+    margin-left: 0px !important;
+ }
+}
 </style>
