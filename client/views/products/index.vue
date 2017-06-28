@@ -55,6 +55,9 @@
               </label>
             </p>
             <p class="control">
+              <input type="file" @change="onFileChange">
+            </p>
+            <p class="control">
               <button class="button is-primary">Submit</button>
               <button class="button is-link">Cancel</button>
             </p>
@@ -151,6 +154,7 @@
 
 <script>
 import Cleave from 'vue-cleave'
+import axios from 'axios'
 import 'cleave.js/dist/addons/cleave-phone.cn'
 
 export default {
@@ -170,6 +174,24 @@ export default {
   methods: {
     onRawValueChanged (newVal) {
       this.demo.rawValue = newVal
+    },
+    onFileChange(e){
+      const files = e.target.files;
+      const config = {
+            headers: { 'content-type': 'multipart/form-data' }
+        }
+      var data = new FormData();
+      for (var i = 0; i < files.length; i++) {
+            const file = files.item(i);
+            data.append('images[' + i + ']', file, file.name);
+      }
+      axios.post(`http://localhost:3000/image`, data, config)
+        .then(response => {
+          console.log(response.data)
+        })
+        .catch(e => {
+          console.log(e)
+        })
     }
   },
 
