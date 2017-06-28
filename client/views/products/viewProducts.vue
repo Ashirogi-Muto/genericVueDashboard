@@ -1,12 +1,25 @@
 <template>
     <div>
+        <div class="columns">
+            <div class="column is-6">
+                <div class="field has-addons">
+                    <p class="control">
+                        <input v-model="searchText" class="input" type="text" placeholder="Find a repository">
+                    </p>
+                </div>
+            </div>
+            <div class="column is-6">
+                <p class="control">
+                    <a v-on:click="searchProduct" class="button is-info">
+                        Search
+                    </a>
+                </p>
+            </div>
+        </div>
         <div class="tile is-ancestor">
             <div class="tile is-parent">
                 <article class="tile is-child box">
                     <h4 class="title">Table</h4>
-                    <!--<div v-for="product in get">
-                  <p>{{product.discountedPrice}}</p>
-              </div>-->
                     <table class="table">
                         <thead>
                             <tr>
@@ -59,7 +72,12 @@ export default {
     },
     data() {
         return {
-
+         searchText: ''   
+        }
+    },
+    methods: {
+        searchProduct: function(){
+            console.log(this.searchText);
         }
     },
     computed: {
