@@ -189,7 +189,7 @@ export default {
   }
 
   .menu-list li {
-    padding: 15px;
+    padding: 10px;
   }
 
   .menu-list li a:hover{
