@@ -27,6 +27,7 @@
             </p>
             <label class="label">Discounted Price</label>
             <p class="control">
+
               <input v-model = 'product.discountedPrice' name = 'discountedPrice' class="input" type="number" placeholder="Number input">
             </p>
 
