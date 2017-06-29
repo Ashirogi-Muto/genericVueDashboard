@@ -155,17 +155,22 @@
         </article>
       </div>
     </div>
+    <image-uploader></image-uploader>
   </div>
+
 </template>
 
 <script>
 import Cleave from 'vue-cleave'
 import axios from 'axios'
+import ImageUploader from '../components/ImageUploader'
+
 import 'cleave.js/dist/addons/cleave-phone.cn'
 
 export default {
   components: {
-    Cleave
+    Cleave,
+    ImageUploader
   },
 
   data () {
@@ -181,15 +186,15 @@ export default {
     onRawValueChanged (newVal) {
       this.demo.rawValue = newVal
     },
-    onFileChange(e){
-      const files = e.target.files;
+    onFileChange (e) {
+      const files = e.target.files
       const config = {
-            headers: { 'content-type': 'multipart/form-data' }
-        }
-      var data = new FormData();
+        headers: { 'content-type': 'multipart/form-data' }
+      }
+      let data = new FormData()
       for (var i = 0; i < files.length; i++) {
-            const file = files.item(i);
-            data.append('images[' + i + ']', file, file.name);
+        const file = files.item(i)
+        data.append('images[' + i + ']', file, file.name)
       }
       axios.post(`http://localhost:3000/image`, data, config)
         .then(response => {
