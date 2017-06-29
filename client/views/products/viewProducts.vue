@@ -57,6 +57,7 @@ import { makeRequest } from '../../helpers/internet.js'
 let tempData = [];
 export default {
     beforeMount() {
+        
         makeRequest('/admin/product')
             .then((response) => {
                 console.log(response.data);

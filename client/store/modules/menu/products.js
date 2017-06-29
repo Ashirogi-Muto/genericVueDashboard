@@ -9,7 +9,7 @@ export default {
 
   children: [
     {
-      name: 'ProductsAdd',
+      name: 'Add Products',
       path: '/products/index',
       meta: {
         label: 'Add Products',
