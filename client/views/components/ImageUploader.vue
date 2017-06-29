@@ -16,6 +16,9 @@
     import axios from 'axios'
 
     export default {
+
+      props: ['image'],
+
       data () {
         return {}
       },
@@ -29,6 +32,7 @@
           let data = new FormData()
           for (var i = 0; i < files.length; i++) {
             const file = files.item(i)
+            this.$emit('image-uploaded', file.name) /* Call this emit event after image is uploaded! */
             data.append('images[' + i + ']', file, file.name)
           }
           axios.post(`http://localhost:3000/image`, data, config)

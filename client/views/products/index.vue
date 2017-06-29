@@ -155,7 +155,8 @@
         </article>
       </div>
     </div>
-    <image-uploader></image-uploader>
+    <image-uploader :image="image" @image-uploaded="uploadedImages.push($event); image = $event; log(uploadedImages)"></image-uploader>
+    Image: {{image}}
   </div>
 
 </template>
@@ -178,13 +179,18 @@ export default {
       demo: {
         value: '',
         rawValue: ''
-      }
+      },
+      image: '',
+      uploadedImages: []
     }
   },
 
   methods: {
     onRawValueChanged (newVal) {
       this.demo.rawValue = newVal
+    },
+    log (obj) {
+      console.log(obj)
     },
     onFileChange (e) {
       const files = e.target.files
