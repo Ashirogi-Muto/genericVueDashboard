@@ -9,6 +9,7 @@
               <p>Drag files to upload</p>
           </div>
         </p>
+        <p>Files uploaded: {{uploadCount}} of {{fileCount}}</p>
     </div>
 </template>
 
@@ -18,7 +19,10 @@
     export default {
 
       data () {
-        return {}
+        return {
+          fileCount: 0,
+          uploadCount: 0
+        }
       },
 
       methods: {
@@ -27,19 +31,23 @@
           const config = {
             headers: { 'content-type': 'multipart/form-data' }
           }
-          let data = new FormData()
+
+          this.fileCount = files.length
           for (var i = 0; i < files.length; i++) {
             const file = files.item(i)
-            this.$emit('image-uploaded', file.name) /* Call this emit event after image is uploaded! */
-            data.append('images[' + i + ']', file, file.name)
-          }
-          axios.post(`http://localhost:3000/image`, data, config)
+            let data = new FormData()
+            data.append('file', file)
+
+            axios.post(`http://10.10.11.243:3000/image-upload-s3`, data, config)
                 .then(response => {
+                  this.$emit('image-uploaded', file.name)
+                  this.uploadCount++
                   console.log(response.data)
                 })
                 .catch(e => {
                   console.log(e)
                 })
+          }
         }
       }
 }

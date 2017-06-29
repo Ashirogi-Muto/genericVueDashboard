@@ -157,6 +157,7 @@
     </div>
     <image-uploader @image-uploaded="uploadedImages.push($event); image = $event; log(uploadedImages)"></image-uploader>
     Image: {{image}}
+
   </div>
 
 </template>
@@ -181,6 +182,7 @@ export default {
         rawValue: ''
       },
       image: '',
+      description: '',
       uploadedImages: []
     }
   },
