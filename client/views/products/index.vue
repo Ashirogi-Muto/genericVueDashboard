@@ -1,157 +1,162 @@
 <template>
   <div>
     <div class="tile is-ancestor">
+
       <div class="tile is-parent is-4">
+
         <article class="tile is-child box">
-          <h1 class="title">Controls</h1>
+          <h1 class="title">Product Details</h1>
+
           <div class="block">
             <label class="label">Name</label>
             <p class="control">
-              <input class="input" type="text" placeholder="Text input">
+              <input v-model = "product.name"  name = 'name' class="input" type="text" placeholder="Text input">
             </p>
-            <label class="label">Username</label>
+            <label class="label">Short Description</label>
             <p class="control has-icon has-icon-right">
-              <input class="input is-success" type="text" placeholder="Text input" value="bulma">
-              <span class="icon is-small">
-                <i class="fa fa-check"></i>
-              </span>
-              <span class="help is-success">This username is available</span>
+              <input v-model = "product.shortDescription" name = 'shortDescription' class="input" type="text" placeholder="Text input" value="bulma">
             </p>
-            <label class="label">Email</label>
+            <label class="label">Long Description</label>
+            <p class="control">
+              <textarea v-model = 'product.longDescription' class="textarea"  type="text" placeholder="Description" value="hello@"></textarea>
+             </p>
+           
+             <label class="label">Original Price</label>
+            <p class="control">
+              <input v-model = 'product.originalPrice' name = 'originalPrice' class="input" type="number" placeholder="Number input">
+            </p>
+            <label class="label">Discounted Price</label>
+            <p class="control">
+              <input v-model = 'product.discountedPrice' name = 'discountedPrice' class="input" type="number" placeholder="Number input">
+            </p>
+
+            <div style = "background-color :#67efc8">
+            <label class="label">Status</label>
+              <p class="control">
+              <ul> 
+              <span>True</span>
+              <input v-model = 'product.status' name = 'status' value = "true" type="radio" checked = "checked">
+              <span>false</span>
+              <input v-model = 'product.status'  name = 'status' value = "false" type="radio" >
+              </ul>
+               </p>
+             
+              
+            <label class="label">Is Deleted</label>
+              <p class="control">
+              <ul>
+              <span>True</span>
+              <input  v-model = 'product.isDeleted' name = 'isDeleted' value = "true" type="radio" checked = "checked">
+              <span>false</span>
+              <input v-model = 'product.isDeleted'   name = 'isDeleted' value = "false" type="radio" >
+               </ul>
+               </p>
+
+              </div>
+              </br> 
+            
+
+          </div>
+        </article>
+
+      </div>
+      
+
+       <div class="tile is-parent is-4">
+
+        <article class="tile is-child box">
+         
+
+          <div class="block">
+            <label class="label">Qunatity</label>
+            <p class="control">
+              <input v-model = 'product.quantity' name = 'quantity' class="input" type="number" placeholder="Number input">
+            </p>
+            <label class="label">Tax</label>
             <p class="control has-icon has-icon-right">
-              <input class="input is-danger" type="text" placeholder="Email input" value="hello@">
-              <span class="icon is-small">
-                <i class="fa fa-warning"></i>
-              </span>
-              <span class="help is-danger">This email is invalid</span>
+              <input v-model = 'product.typeoftax' name = 'typeoftax' class="input" type="text" placeholder="Text input" value="Type of tax">
+              <input  v-model = 'product.taxamount' name = 'taxamount' class="input" type="number" placeholder="Tax Amount">
             </p>
-            <label class="label">Subject</label>
+             
+            <div style = "background-color :#67efc8">
+
+            <label class="label">Is featured</label>
+
+             <p class="control">
+              <ul>
+              <span>True</span>
+              <input  v-model = 'product.isFeatured' name = 'isFeatured' value = "true" type="radio" checked = "checked">
+              <span>false</span>
+              <input  v-model = 'product.isFeatured' name = 'isFeatured' value = "false" type="radio" >
+              </ul>
+               </p>
+
+
+
+              <label class="label">Is New Product</label>
+               <p class="control">
+              <ul>
+              <span>True</span>
+              <input  v-model = 'product.isNewProduct' name = 'isNewProduct' value = "true" type="radio" checked = "checked">
+              <span>false</span>
+              <input v-model = 'product.isNewProduct' name = 'isNewProduct' value = "false" type="radio" >
+              </ul>
+              </p>
+
+           
+             <label class="label">Is on Sale</label>
+             <p class="control">
+              <ul>
+              <span>True</span>
+              <input v-model= 'product.isOnSale' name = 'isOnSale' value = "true" type="radio" checked = "checked">
+              <span>false</span>
+              <input  v-model = 'product.isOnsale' name = 'isOnSale' value = "false" type="radio" >
+              </ul>
+              </p>
+             
+
+             </div>
+            
+            <label class="label">Average Rating</label>
             <p class="control">
-              <span class="select">
-                <select>
-                  <option>Select dropdown</option>
-                  <option>With options</option>
-                </select>
-              </span>
+              <input v-model = 'product.averageRating' name = 'averageRating' class="input" type="number" placeholder="Number input">
             </p>
-            <label class="label">Message</label>
+             
+             <label class="label">Total Reviews</label>
             <p class="control">
-              <textarea class="textarea" placeholder="Textarea"></textarea>
+              <input  v-model = 'product.totalReviews' name = 'totalReviews' class="input" type="number" placeholder="Number input">
             </p>
-            <p class="control">
-              <label class="checkbox">
-                <input type="checkbox">
-                Remember me
-              </label>
-            </p>
-            <p class="control">
-              <label class="radio">
-                <input type="radio" name="question">
-                Yes
-              </label>
-              <label class="radio">
-                <input type="radio" name="question">
-                No
-              </label>
-            </p>
-            <p class="control">
-              <button class="button is-primary">Submit</button>
+             
+
+
+
+          </div>
+        </article>
+
+          
+         
+
+
+
+      </div>
+
+        
+           
+
+   </div>
+
+           <p class="control">
+              <button v-on:click = "submit" class="button is-primary">Submit</button>
               <button class="button is-link">Cancel</button>
             </p>
-          </div>
-        </article>
-      </div>
-
-      <div class="tile is-parent is-5 is-vertical">
-        <article class="tile is-child box">
-          <h1 class="title">Colors</h1>
-          <div class="block">
-            <p class="control">
-              <input class="input is-primary" type="text" placeholder="Primary input">
-            </p>
-            <p class="control">
-              <input class="input is-info" type="text" placeholder="Info input">
-            </p>
-            <p class="control">
-              <input class="input is-success" type="text" placeholder="Success input">
-            </p>
-            <p class="control">
-              <input class="input is-warning" type="text" placeholder="Warning input">
-            </p>
-            <p class="control">
-              <input class="input is-danger" type="text" placeholder="Danger input">
-            </p>
-          </div>
-        </article>
-        <article class="tile is-child box">
-          <h1 class="title">Sizes</h1>
-          <div class="block">
-            <p class="control">
-              <input class="input is-small" type="text" placeholder="Small input">
-            </p>
-            <p class="control">
-              <input class="input" type="text" placeholder="Normal input">
-            </p>
-            <p class="control">
-              <input class="input is-medium" type="text" placeholder="Medium input">
-            </p>
-            <p class="control">
-              <input class="input is-large" type="text" placeholder="Large input">
-            </p>
-          </div>
-        </article>
-      </div>
-
-      <div class="tile is-parent">
-        <article class="tile is-child box">
-          <h1 class="title">States</h1>
-          <div class="block">
-            <h2 class="subtitle">Loading</h2>
-            <p class="control is-loading">
-              <input class="input" type="text" placeholder="Loading input">
-            </p>
-            <p class="control is-loading">
-              <textarea class="textarea" placeholder="Loading textarea"></textarea>
-            </p>
-          </div>
-          <div class="block">
-            <h2 class="subtitle">Disabled</h2>
-            <p class="control">
-              <input class="input" type="text" placeholder="Disabled input" disabled>
-            </p>
-            <p class="control">
-              <textarea class="textarea" placeholder="Disabled textarea" disabled></textarea>
-            </p>
-            <p class="control">
-              <label class="checkbox is-disabled">
-                <input type="checkbox" disabled>
-                Remember me
-              </label>
-            </p>
-            <p class="control">
-              <label class="radio is-disabled">
-                <input type="radio" name="question" disabled>
-                Yes
-              </label>
-              <label class="radio is-disabled">
-                <input type="radio" name="question" disabled>
-                No
-              </label>
-            </p>
-            <p class="control">
-              <button class="button is-primary" disabled>Submit</button>
-              <button class="button" disabled>Cancel</button>
-            </p>
-          </div>
-        </article>
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
+
 import Cleave from 'vue-cleave'
 import 'cleave.js/dist/addons/cleave-phone.cn'
+import { makeRequest } from '../../helpers/internet.js'
 
 export default {
   components: {
@@ -163,6 +168,25 @@ export default {
       demo: {
         value: '',
         rawValue: ''
+      },
+      product : {
+       
+          name : '' ,
+          shortDescription  : '' ,
+          longDescription : '' ,
+          originalPrice : ''  ,
+          discountedPrice : '' ,
+          status : '' ,
+          isDeleted : '' ,
+          quantity : '' ,
+          typeoftax : '' ,
+          taxamount : '' ,
+          isFeatured : '' , 
+          isNewProduct : '' ,
+          isOnsale : ''
+
+
+       
       }
     }
   },
@@ -170,6 +194,10 @@ export default {
   methods: {
     onRawValueChanged (newVal) {
       this.demo.rawValue = newVal
+    },
+    submit : function(){
+
+      makeRequest('/admin/product' , this.product)
     }
   },
 
@@ -182,6 +210,11 @@ export default {
     }
   }
 }
+
+
+
+
+
 </script>
 
 <style lang="scss" scoped>

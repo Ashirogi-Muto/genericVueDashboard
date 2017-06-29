@@ -113,6 +113,7 @@ let tempData = [];
 export default {
     beforeMount() {
         makeRequest('/admin/productsearch?page=1')
+        //makeRequest('/admin/product')
             .then((response) => {
                 tempData = response.data;
                 product.dispatch('loadProducts', tempData);
