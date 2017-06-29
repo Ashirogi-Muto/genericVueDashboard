@@ -17,8 +17,6 @@
 
     export default {
 
-      props: ['image'],
-
       data () {
         return {}
       },

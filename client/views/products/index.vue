@@ -155,7 +155,7 @@
         </article>
       </div>
     </div>
-    <image-uploader :image="image" @image-uploaded="uploadedImages.push($event); image = $event; log(uploadedImages)"></image-uploader>
+    <image-uploader @image-uploaded="uploadedImages.push($event); image = $event; log(uploadedImages)"></image-uploader>
     Image: {{image}}
   </div>
 
