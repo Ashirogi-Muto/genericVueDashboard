@@ -1,21 +1,5 @@
 <template>
     <div>
-        <div class="columns">
-            <div class="column is-6">
-                <div class="field has-addons">
-                    <p class="control">
-                        <input v-model="searchText" class="input" type="text" placeholder="Find a repository">
-                    </p>
-                </div>
-            </div>
-            <div class="column is-6">
-                <p class="control">
-                    <a v-on:click="searchProduct" class="button is-info">
-                        Search
-                    </a>
-                </p>
-            </div>
-        </div>
         <div class="tile is-ancestor">
             <div class="tile is-parent">
                 <article class="tile is-child box">
@@ -25,27 +9,43 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Short Description</th>
-                                <th>Original Price</th>
-                                <th>Discounted Price</th>
+                                <th>SKU</th>
+                                <th>Quantity</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>Name</th>
                                 <th>Short Description</th>
-                                <th>Original Price</th>
-                                <th>Discounted Price</th>
+                                <th>SKU</th>
+                                <th>Quantity</th>
                             </tr>
                         </tfoot>
                         <tbody>
                             <tr v-for="product in allProd" :key="product.name">
                                 <td>{{product.name}}</td>
                                 <td>{{product.shortDescription}}</td>
-                                <td>{{product.originalPrice}}</td>
-                                <td>{{product.discountedPrice}}</td>
+                                <td>{{product.sku}}</td>
+                                <td>{{product.quantity}}</td>
                             </tr>
                         </tbody>
                     </table>
+                    <div class="columns">
+                        <div class="column is-7 is-offset-5">
+                            <nav class="pagination">
+                                <button class="pagination-previous button is-primary" :disabled="!allPages.hasPrev">Previous</button>
+                                <button class="pagination-next button is-primary" :disabled="!allPages.hasNext">Next page</button>
+                                <ul class="pagination-list">
+                                    <div v-for="x in lastIndex" :key="x">
+                                        <li v-if="x >= startIndex">
+                                            <button @click="sendPageRequest(x, allPages.current)" class="pagination-link button is-primary">{{ x }}</button>
+                                            <span class="pagination-ellipsis">&hellip;</span>
+                                        </li>
+                                    </div>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
                 </article>
             </div>
         </div>
@@ -54,14 +54,14 @@
 <script>
 import product from '../../store/index.js'
 import { makeRequest } from '../../helpers/internet.js'
+import { MAX_PAGE_NUMBER } from '../../helpers/constant.js';
 let tempData = [];
 export default {
     beforeMount() {
-        makeRequest('/admin/product')
+        makeRequest('/admin/productsearch?page=1')
             .then((response) => {
-                console.log(response.data);
-                tempData = response.data.slice();
-                product.dispatch('LOAD_PRODUCT_LIST', tempData);
+                tempData = response.data;
+                product.dispatch('loadProducts', tempData);
 
             }, error => {
                 console.log(error);
@@ -72,18 +72,42 @@ export default {
     },
     data() {
         return {
-         searchText: ''   
+            startIndex: 1,
+            lastIndex: MAX_PAGE_NUMBER,
         }
     },
     methods: {
-        searchProduct: function(){
-            console.log(this.searchText);
+        sendPageRequest: function (index, currentPage) {
+            this.calculatePage(index);
+            if (index === currentPage) {
+                return;
+            }
+            makeRequest('/admin/productsearch?page=' + index)
+                .then((response) => {
+                    tempData = response.data;
+                    product.dispatch('loadProducts', tempData);
+
+                }, error => {
+                    console.log(error);
+                });
+        },
+         calculatePage: function (index) {
+            if (index % MAX_PAGE_NUMBER === 0) {
+                this.startIndex = index + 1;
+                this.lastIndex = this.startIndex + MAX_PAGE_NUMBER - 1;
+            }
         }
     },
     computed: {
         allProd() {
             return product.getters.allProducts
-        }
+        },
+        allPages() {
+            return product.getters.pageInfoData
+        },
+        allItems() {
+            return product.getters.itemInfoData
+        },
     }
 }
 </script>

@@ -2,14 +2,12 @@ import { getOptions } from './collection';
 import { URL_BASE } from './constant';
 import axios from 'axios';
 export const makeRequest = (method, data = null) => {
-	const url = URL_BASE + method
+	const url = URL_BASE + method;
 	const options = getOptions(url, data);
 	// Make a request for a user with a given ID
 	return new Promise((resolve, reject) => {
-		console.log(options);
 		axios(options)
 			.then(function (response) {
-				console.log(response);
 				resolve(response);
 			})
 			.catch(function (error) {
