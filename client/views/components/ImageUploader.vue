@@ -27,6 +27,8 @@
 
       methods: {
         onFileChange (e) {
+          this.fileCount = 0
+          this.uploadCount = 0
           const files = e.target.files
           const config = {
             headers: { 'content-type': 'multipart/form-data' }
