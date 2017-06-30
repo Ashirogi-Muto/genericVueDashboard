@@ -10,18 +10,23 @@
           </div>
         </p>
         <p>Files uploaded: {{uploadCount}} of {{fileCount}}</p>
+          
     </div>
 </template>
 
 <script>
-    import axios from 'axios'
 
+    import product from '../../store/index.js'
+    import axios from 'axios'
+    let temp_url_data
     export default {
 
       data () {
         return {
           fileCount: 0,
-          uploadCount: 0
+          uploadCount: 0 ,
+          
+          
         }
       },
 
@@ -40,11 +45,13 @@
             let data = new FormData()
             data.append('file', file)
 
-            axios.post(`http://10.10.11.243:3000/image-upload-s3`, data, config)
+            axios.post(`http://localhost:3000/image-upload-s3`, data, config)
                 .then(response => {
                   this.$emit('image-uploaded', file.name)
                   this.uploadCount++
-                  console.log(response.data)
+                  temp_url_data = response.data ;
+                  product.dispatch('loadImageData' , temp_url_data) ;
+                 // console.log(this.img_url)
                 })
                 .catch(e => {
                   console.log(e)

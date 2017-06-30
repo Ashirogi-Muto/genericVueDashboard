@@ -141,15 +141,20 @@
 
       </div>
 
-        
+        <div class = "title is-parent is-4">
+         <ImageUploader></ImageUploader>
+        </div>
            
 
    </div>
-
+          <div class = '"content has-text-centered"'>
+           
            <p class="control">
               <button v-on:click = "submit" class="button is-primary">Submit</button>
               <button class="button is-link">Cancel</button>
             </p>
+                
+            </div>
 
   </div>
 
@@ -160,9 +165,10 @@
 import Cleave from 'vue-cleave'
 import axios from 'axios'
 import ImageUploader from '../components/ImageUploader'
-
+import productstore from '../../store/index.js'
 import 'cleave.js/dist/addons/cleave-phone.cn'
 import { makeRequest } from '../../helpers/internet.js'
+
 
 export default {
   components: {
@@ -191,7 +197,8 @@ export default {
           taxamount : '' ,
           isFeatured : '' , 
           isNewProduct : '' ,
-          isOnsale : ''      
+          isOnsale : '' ,
+          mainImage : ''     
       }
     }
   },
@@ -201,6 +208,9 @@ export default {
       this.demo.rawValue = newVal
     },
     submit : function(){
+
+      this.product.mainImage = productstore.getters.getImageUrl ;
+      console.log(this.product)
       makeRequest('/admin/product' , this.product)
     }
   },
