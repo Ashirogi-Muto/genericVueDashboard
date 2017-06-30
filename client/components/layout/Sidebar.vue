@@ -185,9 +185,8 @@ export default {
   }
 
   .menu-list li ul{
-      border: none;
       padding: 0px;
-      margin: 0px;
+      margin: 0 0 0 8px;
   }
   .menu-list li a:hover{
     color:#000;
