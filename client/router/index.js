@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import menuModule from 'vuex-store/modules/menu'
+import user from '../store/modules/user';
 Vue.use(Router)
 
 export default new Router({
@@ -9,25 +10,31 @@ export default new Router({
   scrollBehavior: () => ({ y: 0 }),
   routes: [
     {
-      name: 'Home',
-      path: '/',
-      component: require('../views/Home')
-    },
-    {
       name: 'Login',
       path: '/login',
       component: require('../views/auth/Login')
     },
     ...generateRoutesFromMenu(menuModule.state.items),
     {
+      name: 'Edit Product',
+      path: '/edit-product/:productId',
+      component: require('../views/products/EditProduct'),
+      meta: {
+        auth: true
+      }
+    },
+    {
       path: '*',
-      redirect: '/'
+      redirect: '/dashboard',
+      meta: {
+        auth: true
+      }
     }
   ]
 })
 
 // Menu should have 2 levels.
-function generateRoutesFromMenu (menu = [], routes = []) {
+function generateRoutesFromMenu(menu = [], routes = []) {
   for (let i = 0, l = menu.length; i < l; i++) {
     let item = menu[i]
     if (item.path) {

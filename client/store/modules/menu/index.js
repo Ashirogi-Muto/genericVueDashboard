@@ -1,9 +1,9 @@
 import * as types from '../../mutation-types'
 import lazyLoading from './lazyLoading'
-import charts from './charts'
-import uifeatures from './uifeatures'
-import components from './components'
-import tables from './tables'
+// import charts from './charts'
+// import uifeatures from './uifeatures'
+// import components from './components'
+// import tables from './tables'
 import products from './products'
 import custom from './custom';
 // show: meta.label -> name
@@ -17,7 +17,8 @@ const state = {
       path: '/dashboard',
       meta: {
         icon: 'fa-tachometer',
-        link: 'dashboard/index.vue'
+        link: 'dashboard/index.vue',
+        auth: true
       },
       component: lazyLoading('dashboard', true)
     },
@@ -31,10 +32,10 @@ const state = {
       },
       component: lazyLoading('axios', true)
     },
-    charts,
-    uifeatures,
-    components,
-    tables,
+    // charts,
+    // uifeatures,
+    // components,
+    // tables,
     products,
     custom
   ]

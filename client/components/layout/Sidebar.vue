@@ -182,26 +182,21 @@ export default {
         }
       }
     }
-
-
   }
 
-  .menu-list li {
+  .menu-list li ul{
+      border: none;
+      padding: 0px;
+      margin: 0px;
   }
-
   .menu-list li a:hover{
     color:#000;
   }
-
-
-
-
 }
  .app-sidebar .menu-list li a.is-active {
-
-        color: #505050;
-       background-color: #FFFFFF;
-    }
+  color: #505050;
+  background-color: #FFFFFF;
+}
 .menu-container{
     overflow: hidden;
     padding-right: 20px;

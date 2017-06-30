@@ -10,9 +10,9 @@
 
 <script>
 import NprogressContainer from 'vue-nprogress/src/NprogressContainer'
+// import Login from './components/'
 import { Navbar, Sidebar, AppMain, FooterBar } from 'components/layout/'
 import { mapGetters, mapActions } from 'vuex'
-
 export default {
   components: {
     Navbar,
