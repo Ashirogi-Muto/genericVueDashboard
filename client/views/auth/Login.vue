@@ -22,7 +22,6 @@
               Remember me
             </label>
           </p>
-
           <hr>
           <p class="control">
             <button type="submit" class="button is-primary">Login</button>
@@ -37,7 +36,6 @@
 
 <script>
 export default {
-
   data () {
     return {
       data: {
@@ -58,18 +56,16 @@ export default {
   },
   methods: {
     login () {
-      var redirect = this.$auth.redirect()
+      var redirect = this.$auth.redirect();
       this.$auth.login({
         headers: {
           'Content-Type': 'application/json'
         },
         data: this.data.body,
         rememberMe: this.data.rememberMe,
-        redirect: {name: redirect ? redirect.from.name : 'Home'},
+        // redirect: {name: redirect ? redirect.from.name : 'Home'},
+        redirect: '/dashboard',
         success (res) {
-          console.log('Auth Success')
-          // console.log('Token: ' + this.$auth.token())
-          // console.log(res)
         },
         error (err) {
           if (err.response) {

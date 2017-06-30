@@ -18,14 +18,15 @@ Vue.use(VueAuth, {
       this.options.http._setHeaders.call(this, req, {Authorization: 'Bearer ' + token})
     },
     response: function (res) {
-      // Get Token from response body
-      return res.data
+      console.log(res.data);
+      return res.data.data;
     }
   },
   http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
   router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
-  loginData: { url: 'http://localhost:6789/login', fetchUser: false },
-  refreshData: { enabled: false }
+  loginData: { url: 'http://localhost:4000/loginapi', fetchUser: false },
+  refreshData: { enabled: false },
+  fetchData: {url: 'auth/user', method: 'GET', enabled: false}
 })
 
 Vue.use(NProgress)
