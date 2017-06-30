@@ -175,8 +175,7 @@ import { makeRequest } from '../../helpers/internet.js'
 export default {
   components: {
     Cleave,
-    ImageUploader,
-    QuillEditor
+    ImageUploader
   },
 
   data () {
