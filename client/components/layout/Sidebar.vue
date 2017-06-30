@@ -192,14 +192,16 @@ export default {
   .menu-list li a:hover{
     color:#000;
   }
-    .menu-list a.is-active {
-       color : #696464
-    }
+
 
 
 
 }
+ .app-sidebar .menu-list li a.is-active {
 
+        color: #505050;
+       background-color: #FFFFFF;
+    }
 .menu-container{
     overflow: hidden;
     padding-right: 20px;
