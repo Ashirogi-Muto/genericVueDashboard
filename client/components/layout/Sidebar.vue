@@ -149,7 +149,7 @@ export default {
   max-height: 100vh;
   height: calc(100% - 50px);
   z-index: 1024 - 1;
-  background: #66615b;
+  background: #666163;
   box-shadow: 0 2px 3px rgba(17, 17, 17, 0.1), 0 0 0 1px rgba(17, 17, 17, 0.1);
   overflow-y: auto;
   overflow-x: hidden;
@@ -175,7 +175,7 @@ export default {
   .menu-list {
     li a {
       color: #FFF;
-      padding: 5px;
+      padding: 20px;
       &[aria-expanded="true"] {
         .is-angle {
           transform: rotate(180deg);
@@ -183,18 +183,20 @@ export default {
       }
     }
 
-    li a + ul {
-      margin: 0 10px 0 15px;
-    }
+
   }
 
   .menu-list li {
-    padding: 10px;
   }
 
   .menu-list li a:hover{
     color:#000;
   }
+    .menu-list a.is-active {
+       color : #696464
+    }
+
+
 
 }
 
