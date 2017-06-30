@@ -4,7 +4,7 @@
           <input type="file" @change="onFileChange">
         </p>
         <p>
-          <div class="dropbox">
+          <div v-if="showDragDrop" class="dropbox">
             <input type="file" multiple @change="onFileChange" accept="image/*" class="input-file">
               <p>Drag files to upload</p>
           </div>
@@ -17,6 +17,7 @@
     import axios from 'axios'
 
     export default {
+      props: ['showDragDrop'],
 
       data () {
         return {

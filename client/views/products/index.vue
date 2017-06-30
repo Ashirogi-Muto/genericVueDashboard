@@ -150,7 +150,7 @@
               <button v-on:click = "submit" class="button is-primary">Submit</button>
               <button class="button is-link">Cancel</button>
             </p>
-
+           
   </div>
 
 </template>
@@ -160,6 +160,7 @@
 import Cleave from 'vue-cleave'
 import axios from 'axios'
 import ImageUploader from '../components/ImageUploader'
+import QuillEditor from '../components/QuillEditor'
 
 import 'cleave.js/dist/addons/cleave-phone.cn'
 import { makeRequest } from '../../helpers/internet.js'
@@ -167,7 +168,8 @@ import { makeRequest } from '../../helpers/internet.js'
 export default {
   components: {
     Cleave,
-    ImageUploader
+    ImageUploader,
+    QuillEditor
   },
 
   data () {
@@ -176,7 +178,7 @@ export default {
         value: '',
         rawValue: ''
       },
-
+      content: 'Hello',
       product : {
        
           name : '' ,
@@ -211,6 +213,9 @@ export default {
     },
     'demo.rawValue' (newVal, oldVal) {
       console.log('rawValue: new ->', newVal, 'old ->', oldVal)
+    },
+    content (newVal, oldVal) {
+      console.log(newVal)
     }
   }
 }
