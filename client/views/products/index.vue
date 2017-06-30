@@ -153,9 +153,13 @@
               <button v-on:click = "submit" class="button is-primary">Submit</button>
               <button class="button is-link">Cancel</button>
             </p>
+<<<<<<< HEAD
                 
             </div>
 
+=======
+           
+>>>>>>> 29d25115706dfb02d415293921c154ac816b868a
   </div>
 
 </template>
@@ -165,7 +169,12 @@
 import Cleave from 'vue-cleave'
 import axios from 'axios'
 import ImageUploader from '../components/ImageUploader'
+<<<<<<< HEAD
 import productstore from '../../store/index.js'
+=======
+import QuillEditor from '../components/QuillEditor'
+
+>>>>>>> 29d25115706dfb02d415293921c154ac816b868a
 import 'cleave.js/dist/addons/cleave-phone.cn'
 import { makeRequest } from '../../helpers/internet.js'
 
@@ -173,7 +182,8 @@ import { makeRequest } from '../../helpers/internet.js'
 export default {
   components: {
     Cleave,
-    ImageUploader
+    ImageUploader,
+    QuillEditor
   },
 
   data () {
@@ -182,7 +192,7 @@ export default {
         value: '',
         rawValue: ''
       },
-
+      content: 'Hello',
       product : {
        
           name : '' ,
@@ -221,6 +231,9 @@ export default {
     },
     'demo.rawValue' (newVal, oldVal) {
       console.log('rawValue: new ->', newVal, 'old ->', oldVal)
+    },
+    content (newVal, oldVal) {
+      console.log(newVal)
     }
   }
 }
