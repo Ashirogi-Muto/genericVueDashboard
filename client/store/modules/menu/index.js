@@ -2,7 +2,7 @@ import * as types from '../../mutation-types'
 import lazyLoading from './lazyLoading'
 // import charts from './charts'
 // import uifeatures from './uifeatures'
-// import components from './components'
+import components from './components'
 // import tables from './tables'
 import products from './products'
 import custom from './custom';
@@ -34,7 +34,7 @@ const state = {
     },
     // charts,
     // uifeatures,
-    // components,
+    components,
     // tables,
     products,
     custom
