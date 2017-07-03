@@ -66,7 +66,8 @@ var toolbarOptions = [['bold', 'italic', 'underline', 'blockquote'],
 
     embedImage (image_url) {
       var url = document.getElementById('image-url').value;
-      var range = window.test.getSelection();
+      var range = window.test.getSelection(true);
+      console.log(range)
       if(url){
         window.test.insertEmbed(range.index, 'image', url);
       }
