@@ -1,7 +1,8 @@
 <template>
     <div>
         <p class="control">
-          <input type="file" @change="onFileChange">
+          <input type="file" @change="onFileChange" v-if="!multiple">
+          <input type="file" @change="onFileChange" v-if="multiple" multiple>
         </p>
         <p>
           <div v-if="showDragDrop" class="dropbox">
@@ -18,9 +19,9 @@
 
     import product from '../../store/index.js'
     import axios from 'axios'
-    let temp_url_data
+
     export default {
-      props: ['showDragDrop'],
+      props: ['showDragDrop', 'multiple'],
 
       data () {
         return {
@@ -46,15 +47,13 @@
             let data = new FormData()
             data.append('file', file)
 
-            axios.post(`http://localhost:3000/image-upload-s3`, data, config)
+            axios.post(`http://localhost:3000/image-upload`, data, config)
                 .then(response => {
-                  this.$emit('image-uploaded', file.name)
+                  this.$emit('image-uploaded', response.data.url)
                   this.uploadCount++
-                  temp_url_data = response.data ;
-                  product.dispatch('loadImageData' , temp_url_data) ;
-                 // console.log(this.img_url)
                 })
                 .catch(e => {
+                  this.$emit('upload-error', e)
                   console.log(e)
                 })
           }
