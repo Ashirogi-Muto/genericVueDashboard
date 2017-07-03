@@ -6,17 +6,33 @@
                 @focus="onEditorFocus($event)">
   </quill-editor>
     <input type="file" id="getFile" @change="uploadFunction($event)" />
-</div>
 
+  <div id="image-upload-window">
+    <span id="close-button" v-on:click="closeImageWindow"> CLOSE </span>
+    <div class="input-container">
+      <ul>
+        <li><label>URL: </label>
+          <input id="image-url" type="text" placeholder="Enter image url..." />
+          <button v-on:click="embedImage()">Insert</button></li>
+        <li><label>Select file: </label><br>
+            <image-uploader @image-uploaded="embedImage($event)" @upload-error="imageUploadError($event)"></image-uploader></li>
+      </ul>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
   import { quillEditor } from 'vue-quill-editor'
+  import ImageUploader from './ImageUploader'
 
 var IMGUR_CLIENT_ID = 'bcab3ce060640ba';
 var IMGUR_API_URL = 'https://api.imgur.com/3/image';
 
-
+var toolbarOptions = [['bold', 'italic', 'underline', 'blockquote'],
+                [{'list': 'ordered'}, {'list': 'bullet'}],
+                ['formula','link', 'image'],
+                ['clean']];
 
   export default {
 
@@ -27,7 +43,7 @@ var IMGUR_API_URL = 'https://api.imgur.com/3/image';
         editorOption: {
           modules: {
                   toolbar: {
-
+                    container: toolbarOptions,
                     handlers: {
                       image: this.imageHandler1
                     }
@@ -39,14 +55,39 @@ var IMGUR_API_URL = 'https://api.imgur.com/3/image';
             }
     },
     components: {
-      quillEditor
+      quillEditor,
+      ImageUploader
+    },
+
+    mounted () {
+      this.content = 'YOLO'
     },
     methods : {
+
+    embedImage (image_url) {
+      var url = document.getElementById('image-url').value;
+      if(url){
+        window.test.insertEmbed(3, 'image', url);
+      }
+      if(image_url){
+        window.test.insertEmbed(3, 'image', image_url);
+      }  
+      this.closeImageWindow();  
+    },
+    imageUploadError (error) {
+      alert(JSON.stringify(error));
+    },
+
+    closeImageWindow () {
+      document.getElementById('image-url').value = '';
+      document.getElementById('image-upload-window').style.display = 'none';
+    },
     imageHandler1(editor) {
 
-      var value = prompt('What is the image URL');
+      //var value = prompt('What is the image URL');
+      document.getElementById('image-upload-window').style.display = 'inline-block';
       console.log(window.test)
-      window.test.insertEmbed(3, 'image', value);
+     // window.test.insertEmbed(3, 'image', value);
     },
       uploadFunction(e){
 
@@ -96,5 +137,28 @@ var IMGUR_API_URL = 'https://api.imgur.com/3/image';
 </script>
 
 <style>
+  #image-upload-window{
+    padding: 5px;
+    width: 600px;
+    left:25%;
+    position: fixed;
+    top:80px;
+    display: none;
+    border-radius: 15px;
+    background-color: #ccc;
+  }
+
+  .input-container{
+    padding:15px;
+  }
+
+  #close-button{
+    position: absolute;
+    right: 0;
+    margin-top: -30px;
+    cursor: pointer;
+    font-weight: 800;
+    padding:6px;
+  }
 
 </style>
