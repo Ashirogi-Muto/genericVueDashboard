@@ -66,11 +66,12 @@ var toolbarOptions = [['bold', 'italic', 'underline', 'blockquote'],
 
     embedImage (image_url) {
       var url = document.getElementById('image-url').value;
+      var range = window.test.getSelection();
       if(url){
-        window.test.insertEmbed(3, 'image', url);
+        window.test.insertEmbed(range.index, 'image', url);
       }
       if(image_url){
-        window.test.insertEmbed(3, 'image', image_url);
+        window.test.insertEmbed(range.index, 'image', image_url);
       }  
       this.closeImageWindow();  
     },
