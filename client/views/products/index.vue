@@ -142,8 +142,15 @@
       </div>
 
         <div class = "title is-parent is-4">
-         <ImageUploader></ImageUploader>
+          <label>Main Image</label>
+         <ImageUploader  @image_uploaded = 'add_uploaded_image_store($event)'></ImageUploader>
+         <hr>
+         <label>Product Images</label> 
+          <ImageUploader :showDragDrop="true" :multiple="true" @image_uploaded = 'add_image_array($event)'></ImageUploader>
+          <hr>
         </div>
+
+
            
 
    </div>
@@ -200,21 +207,37 @@ export default {
           isFeatured : '' , 
           isNewProduct : '' ,
           isOnsale : '' ,
-          mainImage : ''     
+          mainImage : '',
+          images : []      
       }
     }
   },
 
   methods: {
+    
     onRawValueChanged (newVal) {
       this.demo.rawValue = newVal
     },
+
     submit : function(){
 
       this.product.mainImage = productstore.getters.getImageUrl ;
+      this.product.images = productstore.getters.getImageArray ;
+
       console.log(this.product)
       makeRequest('/admin/product' , this.product)
+    } ,
+
+    add_uploaded_image_store(image_url){
+     
+      productstore.dispatch('loadImageData' , image_url) 
+    },
+
+    add_image_array(image_url){
+
+      productstore.dispatch('loadImageArray' , image_url)
     }
+
   },
 
   watch: {
