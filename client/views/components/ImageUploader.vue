@@ -19,7 +19,7 @@
 
     import product from '../../store/index.js'
     import axios from 'axios'
-    let temp_url_data
+
     export default {
       props: ['showDragDrop', 'multiple'],
 
@@ -51,9 +51,6 @@
                 .then(response => {
                   this.$emit('image-uploaded', response.data.url)
                   this.uploadCount++
-                  temp_url_data = response.data ;
-                  //product.dispatch('loadImageData' , temp_url_data) ;
-                  //console.log(temp_url_data)
                 })
                 .catch(e => {
                   this.$emit('upload-error', e)
