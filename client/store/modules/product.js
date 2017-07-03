@@ -4,8 +4,8 @@ const products = {
       allProducts : [],
       pages : {},
       items : {} ,
-      image : {} ,
-      images : [] 
+      image : "" ,
+      images : [] = [] 
    },
   mutations: {
       SET_PRODUCT_LIST: (state,  productData) => {
@@ -18,6 +18,15 @@ const products = {
 
       state.image = img_url_data ;
       //console.log(state.image) ;
+
+    },
+
+    SET_IMAGE_ARRAY : (state , img_url_array) =>{
+     
+      state.images.push(img_url_array )  ;
+      
+      //state.images = img_url_array ;
+      console.log(state.images.length)
 
     }
 
@@ -33,13 +42,17 @@ const products = {
         commit('SET_IMAGE_DATA', data);
     } ,
 
-   
+    loadImageArray : function({commit} , data) {
+
+        commit('SET_IMAGE_ARRAY' , data) ;
+    }
   },
   getters: {
       allProducts: state => state.allProducts,
       pageInfoData: state => state.pages,
       itemInfoData: state => state.items ,
-      getImageUrl : state => state.image
+      getImageUrl : state => state.image ,
+      getImageArray : state => state.images 
     }
 }
 
