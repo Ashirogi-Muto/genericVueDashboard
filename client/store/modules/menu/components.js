@@ -5,7 +5,7 @@ export default {
   meta: {
     icon: 'fa-building-o',
     expanded: false,
-    auth: false,
+    auth: true,
     label: 'Components'
   },
   component: lazyLoading('components', true),

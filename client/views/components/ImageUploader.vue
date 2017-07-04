@@ -47,7 +47,7 @@
             let data = new FormData()
             data.append('file', file)
 
-            axios.post(`http://localhost:3000/image-upload`, data, config)
+            axios.post(`http://localhost:4000/image-upload`, data, config)
                 .then(response => {
                   this.$emit('image-uploaded', response.data.url)
                   this.uploadCount++
