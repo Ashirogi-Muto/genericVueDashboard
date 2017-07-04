@@ -3,13 +3,13 @@ export const getOptions = (url, data) => {
 		method: 'GET',
 		url: url,
 		headers: {
-			'Accept':'application/json',
+			'Accept': 'application/json',
 			'Content-Type': 'application/json'
 		}
 	};
 	if (data) {
 		options['method'] = 'POST';
-		options['data'] = data
+		options['data'] = data;
 	}
 
 	return options;

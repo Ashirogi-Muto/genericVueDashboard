@@ -118,7 +118,7 @@
                     <div v-for="image in allImages">
                         <p class="control">
                             <label class="label">Product Images</label>
-                            <img :src="'http://localhost:4000' + image" alt="Product Images">
+                            <img :src="'http://localhost:4000' + image" alt="Product Images" class="product-image">
                         </p>
                         <div class="columns">
                             <div class="column is-offset-1">
@@ -127,11 +127,12 @@
                             </div>
                         </div>
                     </div>
+    
                 </div>
             </div>
             <div class="columns">
                 <div class="" style="margin: auto;">
-                    <button class="button is-outlined is-medium is-success">Submit</button>
+                    <button @click="submitEditForm" class="button is-outlined is-medium is-success">Submit</button>
                 </div>
             </div>
         </div>
@@ -144,12 +145,6 @@ import Quill from 'vue-bulma-quill';
 import axios from 'axios';
 
 export default {
-    data() {
-        return {
-            productDetails: Object.assign({}),
-            imageSource: []
-        }
-    },
     mounted() {
         makeRequest('/admin/product/' + this.$route.params.productId)
             .then((response) => {
@@ -159,7 +154,26 @@ export default {
                 console.log(error);
             });
     },
+    data() {
+        return {
+            productDetails: Object.assign({})
+        }
+    },
+    computed: {
+        allImages() {
+            return this.productDetails.images
+        }
+    },
     methods: {
+        submitEditForm() {
+            console.log(this.productDetails);
+            makeRequest('/admin/product/' + this.$route.params.productId, this.productDetails)
+                .then((respose) =>{
+                    console.log(respose);
+                }, error =>{
+                    console.log(error);
+                });
+        },
         uploadImage(event, image) {
             const files = event.target.files;
             const config = {
@@ -169,18 +183,13 @@ export default {
             data.append('file', files.item(0))
             axios.post(`http://localhost:4000/image-upload`, data, config)
                 .then(response => {
-                    const index = this.imageSource.indexOf(image);
-                    this.imageSource = this.imageSource.filter(x => x !== image);
-                    this.imageSource.splice(index, 0, response.data.url);
+                    const index = this.productDetails.images.indexOf(image);
+                    this.productDetails.images = this.productDetails.images.filter(x => x !== image);
+                    this.productDetails.images.splice(index, 0, response.data.url);
                 })
                 .catch(e => {
                     console.log(e);
                 });
-        }
-    },
-    computed:{
-        allImages(){
-            return this.imageSource
         }
     }
 }
@@ -212,3 +221,9 @@ export default {
 //                 });
 //         }
 </script>
+<style scoped>
+.product-image {
+    max-width: 300px !important;
+}
+</style>
+
