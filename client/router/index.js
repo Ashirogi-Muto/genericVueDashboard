@@ -25,10 +25,7 @@ export default new Router({
     },
     {
       path: '*',
-      redirect: '/dashboard',
-      meta: {
-        auth: true
-      }
+      redirect: '/login',
     }
   ]
 })

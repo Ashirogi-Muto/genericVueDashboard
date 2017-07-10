@@ -63,8 +63,8 @@ export default {
         },
         data: this.data.body,
         rememberMe: this.data.rememberMe,
-        // redirect: {name: redirect ? redirect.from.name : 'Home'},
-        redirect: '/dashboard',
+        redirect: {name: redirect ? redirect.from.name : 'Dashboard'},
+        // redirect: '/dashboard',
         success (res) {
         },
         error (err) {
