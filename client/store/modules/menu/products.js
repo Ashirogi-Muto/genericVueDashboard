@@ -5,7 +5,7 @@ export default {
   meta: {
     icon: 'fa-table',
     expanded: true,
-    auth: true
+    auth: false
   },
 
   children: [
@@ -15,7 +15,7 @@ export default {
       meta: {
         label: 'Add Products',
         link: 'products/index.vue',
-        auth: true
+        auth: false
       },
       component: lazyLoading('products/index')
     },
@@ -25,7 +25,7 @@ export default {
       meta: {
         label: 'View Products',
         link: 'products/viewProducts.vue',
-        auth: true
+        auth: false
       },
       component: lazyLoading('products/viewProducts')
     }

@@ -6,7 +6,7 @@ yarn-error.log
 selenium-debug.log
 test/unit/coverage
 test/e2e/reports
-
+README.md
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion
 

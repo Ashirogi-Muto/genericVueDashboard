@@ -20,7 +20,7 @@ export default new Router({
       path: '/edit-product/:productId',
       component: require('../views/products/EditProduct'),
       meta: {
-        auth: true
+        auth: false
       }
     },
     {
